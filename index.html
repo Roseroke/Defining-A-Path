@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Defining a Path - Professional Summary</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Times New Roman', Times, serif;
+        }
+        /* Sidebar custom styles */
+        #sidebar-nav a {
+            transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, border-left-color 0.2s ease-in-out;
+            border-left: 3px solid transparent;
+        }
+        #sidebar-nav a.active-link {
+            background-color: #eef2ff; /* indigo-50 */
+            color: #4338ca; /* indigo-700 */
+            font-weight: 600;
+            border-left-color: #4338ca; /* indigo-700 */
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 antialiased">
+
+    <div class="flex flex-col md:flex-row min-h-screen">
+        <!-- Sidebar -->
+        <aside id="sidebar" class="w-full md:w-64 lg:w-80 bg-white p-6 flex-shrink-0 md:sticky md:top-0 md:self-start border-r border-gray-200" style="height: 100vh; overflow-y: auto;">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6 border-b border-gray-200 pb-4">Menu</h2>
+            <nav id="sidebar-nav" class="space-y-2">
+                <!-- Navigation links will be injected here -->
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 p-6 sm:p-10">
+            <header class="text-center mb-12">
+                <h1 class="text-4xl sm:text-5xl font-bold tracking-tight text-gray-900">
+                    Defining a Path
+                </h1>
+                <p class="mt-3 text-lg text-gray-600">An Interactive Summary of Core Concepts</p>
+            </header>
+
+            <div id="content-container" class="space-y-12">
+                <!-- Content sections will be injected here -->
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const sectionsData = [
+            {
+                mainTitle: "1. Foundational Concepts",
+                items: [
+                    { id: "1.1", title: "Introduction", content: "A personal introduction outlining the author's motivation to compile a document that proposes solutions for humanity's future, addressing issues of work, money, and time. It emphasizes a critical yet constructive approach to analyzing American society and government, aiming to provide tangible, beneficial solutions for the majority." },
+                    { id: "1.2", title: "Redefining the Role of Government", content: "Proposes that government is an entity entrusted with the population's wellbeing. Its fundamental function is to determine a course of action that achieves the people's mandate. This could include developing a robust military, ensuring accountability, streamlining agencies, and providing essential domestic services like employment, healthcare, and housing, potentially de-commodifying certain sectors in an age of post-scarcity." }
+                ]
+            },
+            {
+                mainTitle: "2. Economic & Societal Structure",
+                items: [
+                    { id: "2.1", title: "Privatization & Competition", content: "The proposed system is not anti-corporate but aims to create a baseline of competition. Government-run agencies would operate as publicly traded businesses, fostering innovation in both public and private sectors. This prevents the affluent from exploiting the system while preserving private enterprise as a seed for innovation." },
+                    { id: "2.2", title: "Obfuscation in Society", content: "Discusses how complexity in terminology and systems (like taxes, insurance, and law) creates barriers, or 'sieves,' that filter out the less privileged. This complexity is not inherently bad but becomes a tool for exploitation, maintaining a system where only a select few can navigate and benefit, while the majority remain economically disadvantaged and confused." },
+                    { id: "2.3", title: "Proposed Industry & Government Agencies", content: "Outlines a new structure for industry through various proposed government departments designed to allocate the population effectively and provide essential services. Key agencies include: Health and Medical Sector (HMS), Department of Education (DOE), Artificial Intelligence Research and Energy Authority (AIREA), Structural Engineers Society (SES), Department of Social Service (DSS), and many others aimed at resource management, housing, and community development." },
+                    { id: "2.4", title: "The Economy & Financial System", content: "Critiques the current economic system as untenable, benefiting a select few who manipulate markets through complex financial instruments. It highlights the lack of direction and understanding, from the average citizen to executives. The document argues that the system, built on exploitation, needs fundamental change to address wealth inequality and the national debt." }
+                ]
+            },
+            {
+                mainTitle: "3. Cultural & Ethical Framework",
+                items: [
+                    { id: "3.1", title: "Culture of the Unailed Weak & Servitism", content: "Addresses individuals who are capable but unwilling to assimilate into a hyper-competitive work environment due to their upbringing or disposition. It introduces 'Collective Servitism,' an ethical framework where value is measured by service and contribution beyond self-interest. The goal is to create a society that accommodates everyone, rewarding selflessness and punishing exploitation." },
+                    { id: "3.2", title: "Education Reform", content: "Critiques the current U.S. education system for failing to provide practical, applicable skills for economic success. It argues that the system creates apathy and disillusionment among youth. The proposed solution is to have the state take a direct hand in curriculum development, focusing on relevant economics, technology, and skills that guide youth into stable, future-proof industries from a young age." }
+                ]
+            },
+            {
+                mainTitle: "4. Systems & Implementation",
+                items: [
+                    { id: "4.1", title: "The Universal Catalogue (UC)", content: "A proposed system to supplement monetary currency. The UC is a secure, comprehensive digital catalog of commodities, goods, and services. Citizens earn 'Credits' by performing societally beneficial tasks. This system is designed to provide for basic needs and incentivize productive, community-focused work, reducing the reliance on a purely capitalistic framework. It includes several experimental phases (Alpha, Beta, Omega, etc.) for gradual implementation." },
+                    { id: "4.2", title: "Armed Forces & National Security", content: "Argues that the desire to protect one's country should stem from a genuine need for defense, not monetary incentives or nationalism. While the existing structures of the military branches are functionally sound, their culture and motivations require re-evaluation. It also proposes a centralized national police force to handle inter-state crime and improve coordination." }
+                ]
+            },
+            {
+                mainTitle: "5. Philosophy & Concerns",
+                items: [
+                    { id: "5.1", title: "Regulation, Contention & Authoritarianism", content: "Addresses potential criticisms. The system is a constitutional democracy where rule of law is paramount. It is not designed to abolish private enterprise but to have the government compete with it to foster innovation and reduce exploitation. The document acknowledges the fear of authoritarianism but emphasizes that individual liberties and due process are key to the system's moral and cultural backbone." }
+                ]
+            }
+        ];
+
+        const sidebarNav = document.getElementById('sidebar-nav');
+        const contentContainer = document.getElementById('content-container');
+
+        // Function to generate content and navigation
+        function generateContent() {
+            sectionsData.forEach(section => {
+                // Create sidebar section title
+                const sectionTitle = document.createElement('h3');
+                sectionTitle.className = 'text-md font-semibold text-indigo-600 mt-4 uppercase tracking-wider';
+                sectionTitle.textContent = section.mainTitle;
+                sidebarNav.appendChild(sectionTitle);
+
+                // Create content section wrapper
+                const contentSectionWrapper = document.createElement('section');
+                contentContainer.appendChild(contentSectionWrapper);
+
+                // Create sidebar links and content items
+                section.items.forEach(item => {
+                    // Sidebar link
+                    const link = document.createElement('a');
+                    link.href = `#content-${item.id}`;
+                    link.textContent = `${item.id} ${item.title}`;
+                    link.className = 'block text-gray-600 hover:bg-gray-100 hover:text-gray-900 rounded-md px-3 py-2 text-sm font-medium';
+                    link.dataset.targetId = `content-${item.id}`;
+                    sidebarNav.appendChild(link);
+
+                    // Content item
+                    const contentItem = document.createElement('div');
+                    contentItem.id = `content-${item.id}`;
+                    contentItem.className = 'scroll-mt-20'; // offset for sticky nav
+                    contentItem.innerHTML = `
+                        <h3 class="section-title text-2xl font-bold text-gray-900 border-b border-gray-200 pb-2 mb-4">${item.id} ${item.title}</h3>
+                        <div class="prose max-w-none text-gray-700 leading-relaxed">
+                            <p>${item.content}</p>
+                        </div>
+                    `;
+                    contentSectionWrapper.appendChild(contentItem);
+                });
+            });
+        }
+
+        generateContent();
+
+        // Intersection Observer for active link highlighting
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const id = entry.target.getAttribute('id');
+                const link = sidebarNav.querySelector(`a[href="#${id}"]`);
+                if (entry.isIntersecting) {
+                    // Remove active class from all links
+                    sidebarNav.querySelectorAll('a').forEach(l => l.classList.remove('active-link'));
+                    // Add active class to the current one
+                    if(link) {
+                        link.classList.add('active-link');
+                    }
+                }
+            });
+        }, { rootMargin: "-30% 0px -70% 0px" }); // trigger when element is in the middle 30% of the viewport
+
+        // Observe all content sections
+        document.querySelectorAll('[id^="content-"]').forEach(section => {
+            observer.observe(section);
+        });
+
+    </script>
+
+</body>
+</html>

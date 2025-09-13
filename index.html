@@ -22,6 +22,11 @@
             border-left: 4px solid #3b82f6; /* blue-500 */
             padding-left: 1rem;
         }
+        .section-title-center {
+            display: inline-block;
+            border-bottom: 3px solid #3b82f6;
+            padding-bottom: 0.5rem;
+        }
     </style>
 </head>
 <body class="bg-gray-100 text-gray-800">
@@ -36,6 +41,7 @@
                 <a href="#industry" class="hover:text-blue-400 transition duration-300">New Industries</a>
                 <a href="#catalogue" class="hover:text-blue-400 transition duration-300">Universal Catalogue</a>
                 <a href="#safeguards" class="hover:text-blue-400 transition duration-300">Safeguards</a>
+                <a href="#source-document" class="hover:text-blue-400 transition duration-300">Full Document</a>
             </nav>
             <!-- Mobile Menu Button -->
             <button id="mobile-menu-button" class="md:hidden focus:outline-none">
@@ -49,6 +55,7 @@
             <a href="#industry" class="block py-2 hover:text-blue-400 transition duration-300">New Industries</a>
             <a href="#catalogue" class="block py-2 hover:text-blue-400 transition duration-300">Universal Catalogue</a>
             <a href="#safeguards" class="block py-2 hover:text-blue-400 transition duration-300">Safeguards</a>
+            <a href="#source-document" class="block py-2 hover:text-blue-400 transition duration-300">Full Document</a>
         </div>
     </header>
 
@@ -153,7 +160,7 @@
             </div>
         </section>
 
-        <!-- Safeguards Section (Updated) -->
+        <!-- Safeguards Section -->
         <section id="safeguards" class="py-16 md:py-24">
             <div class="container mx-auto px-6">
                 <h2 class="text-3xl md:text-4xl font-bold mb-8 section-title">Accountability & Safeguards</h2>
@@ -173,6 +180,23 @@
                 </div>
             </div>
         </section>
+
+        <!-- NEW Source Document Section -->
+        <section id="source-document" class="py-16 md:py-24 bg-gray-200">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 section-title-center">Dive Deeper</h2>
+                <p class="text-lg max-w-3xl mx-auto mb-8 text-gray-700">
+                    This website serves as a consolidated summary of a much larger, evolving proposal. For those who wish to explore every detail, the complete source document is publicly available and regularly updated.
+                </p>
+                <a href="https://docs.google.com/document/d/1wFYbgVt5V_DMVNxtMUrakRaRT0F3WwuolkNBGJpYA3o/edit?usp=drivesdk" 
+                   target="_blank" 
+                   rel="noopener noreferrer"
+                   class="inline-block bg-blue-600 text-white font-semibold py-4 px-8 rounded-lg shadow-lg hover:bg-blue-700 hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 text-lg">
+                    Access the Full Document
+                </a>
+            </div>
+        </section>
+
     </main>
 
     <!-- Footer -->

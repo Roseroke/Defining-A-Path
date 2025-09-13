@@ -1,240 +1,205 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Notebook: Defining a Path</title>
+    <title>Defining a Path - A New Vision</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            scroll-behavior: smooth;
+            background-color: #f8fafc; /* Tailwind gray-50 */
         }
-        .notebook-cell {
-            display: none;
+        h1, h2, h3, h4 {
+            font-family: 'Lora', serif;
         }
-        .notebook-cell.active {
-            display: block;
-        }
-        .prose-custom p {
-            margin-bottom: 1rem;
-        }
-        .prose-custom h3 {
-            margin-bottom: 0.5rem;
+        /* Style for the active navigation link */
+        .nav-active {
+            background-color: #e2e8f0; /* Tailwind slate-200 */
+            color: #1e293b; /* Tailwind slate-800 */
             font-weight: 600;
         }
-        .prose-custom ul {
-            list-style-position: inside;
-            padding-left: 1.5rem;
-        }
-        .prose-custom li {
-            margin-bottom: 0.5rem;
+        /* Offset content to account for fixed header on small screens */
+        @media (max-width: 767px) {
+            main {
+                padding-top: 64px;
+            }
         }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800 flex items-center justify-center min-h-screen p-4">
+<body class="text-slate-800">
 
-    <main class="w-full max-w-3xl mx-auto">
-        <div class="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
-            <div class="p-6 md:p-8 border-b border-gray-200 bg-gray-100">
-                <h1 class="text-2xl md:text-3xl font-bold text-gray-900">Defining a Path: An Interactive Summary</h1>
-                <p class="mt-2 text-gray-600">An exploration of new ideas for society, government, and the economy. Click through the notebook to learn about the core concepts.</p>
-            </div>
-
-            <div id="notebook-container" class="p-6 md:p-8 min-h-[400px] flex flex-col justify-between">
-                <!-- Cells will be injected here by JS -->
-            </div>
-
-            <div class="px-6 py-4 md:px-8 md:py-5 bg-gray-100 border-t border-gray-200 flex items-center justify-between">
-                <span id="progress-indicator" class="text-sm font-medium text-gray-500"></span>
-                <div class="flex gap-3">
-                    <button id="prev-btn" class="px-4 py-2 bg-white border border-gray-300 rounded-lg text-sm font-semibold text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors">
-                        Previous
-                    </button>
-                    <button id="next-btn" class="px-4 py-2 bg-indigo-600 border border-transparent rounded-lg text-sm font-semibold text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors">
-                        Next
-                    </button>
-                </div>
-            </div>
+    <!-- Mobile Header -->
+    <header class="md:hidden bg-slate-100 border-b border-slate-200 fixed w-full z-20">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <h1 class="text-xl font-bold text-slate-900">Defining a Path</h1>
+            <button id="mobile-menu-button" class="focus:outline-none">
+                <svg class="w-6 h-6 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
         </div>
-        <footer class="text-center mt-6 text-sm text-gray-500">
-            <p>Based on the document "Defining a Path" by Roosevelt.</p>
-        </footer>
-    </main>
+    </header>
+
+    <!-- Main Container -->
+    <div class="flex flex-col md:flex-row min-h-screen">
+
+        <!-- Sidebar Navigation -->
+        <aside id="sidebar" class="w-full md:w-64 lg:w-72 bg-slate-100 border-r border-slate-200 p-6 md:sticky md:top-0 md:h-screen md:overflow-y-auto hidden md:block z-10">
+            <h1 class="text-2xl font-bold text-slate-900 mb-6 hidden md:block">Navigation</h1>
+            <nav id="navigation" class="space-y-2">
+                <a href="#introduction" class="nav-link block p-2 rounded-md hover:bg-slate-200 transition-colors duration-200">Introduction</a>
+                <a href="#government" class="nav-link block p-2 rounded-md hover:bg-slate-200 transition-colors duration-200">Government</a>
+                <a href="#industry" class="nav-link block p-2 rounded-md hover:bg-slate-200 transition-colors duration-200">New Industries</a>
+                <a href="#catalogue" class="nav-link block p-2 rounded-md hover:bg-slate-200 transition-colors duration-200">Universal Catalogue</a>
+                <a href="#safeguards" class="nav-link block p-2 rounded-md hover:bg-slate-200 transition-colors duration-200">Safeguards</a>
+                <a href="#source-document" class="nav-link block p-2 rounded-md hover:bg-slate-200 transition-colors duration-200">Full Document</a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1">
+            <div class="max-w-5xl mx-auto p-6 md:p-10 lg:p-12">
+                
+                <section id="introduction" class="mb-16">
+                    <div class="text-center mb-12">
+                        <h1 class="text-5xl font-extrabold text-slate-900">Defining a Path</h1>
+                        <p class="mt-4 text-xl text-slate-600">A comprehensive and practical attempt to address and solve the social and economic problems of our time, proposing tangible solutions for work, money, and purpose.</p>
+                    </div>
+                </section>
+
+                <section id="government" class="mb-16">
+                    <h2 class="text-4xl font-bold text-slate-800 border-b-2 border-slate-300 pb-2 mb-8">Redefining the Role of Government</h2>
+                    <div class="grid md:grid-cols-5 gap-12">
+                        <div class="md:col-span-3 space-y-4 text-lg leading-relaxed text-slate-700">
+                             <p>The core idea is to redefine government as an entity entrusted with the population's wellbeing, grounded in the philosophy of **Collective Servitism**—where value is measured by service to others, not self-enrichment.</p>
+                             <p>This involves streamlining agencies and de-commodifying essentials like healthcare and housing. The government's role is not to control, but to empower citizens by providing a baseline of support and competing with private enterprise to drive innovation and fairness.</p>
+                        </div>
+                        <div class="md:col-span-2 bg-slate-100 p-6 rounded-lg border border-slate-200">
+                            <h3 class="text-2xl font-semibold mb-4 text-slate-700">Core Principles</h3>
+                            <ul class="space-y-3 list-disc list-inside text-slate-600">
+                                <li>Ensure the wellbeing of the population.</li>
+                                <li>Remain accountable to the Rule of Law.</li>
+                                <li>Provide employment & public services.</li>
+                                <li>Incentivize selflessness over self-enrichment.</li>
+                                <li>Diminish exploitation while strengthening liberty.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="industry" class="mb-16">
+                    <h2 class="text-4xl font-bold text-slate-800 border-b-2 border-slate-300 pb-2 mb-8">A New Framework for Industry</h2>
+                    <p class="text-lg leading-relaxed text-slate-700 mb-8">To create a more equitable society, a new framework of government-run, publicly-accountable agencies is proposed. These are designed to address critical societal needs and provide meaningful work for all who opt-in.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="bg-white p-6 rounded-lg border border-slate-200 shadow-sm"><h3 class="font-bold text-xl mb-2 text-blue-700">CHRA</h3><p class="text-slate-600">Creates personalized "Stability Plans" based on objective needs, connecting citizens to work, education, and housing.</p></div>
+                        <div class="bg-white p-6 rounded-lg border border-slate-200 shadow-sm"><h3 class="font-bold text-xl mb-2 text-blue-700">AIREA</h3><p class="text-slate-600">Spearheads ethical AI development and manages sustainable energy resources for the collective benefit.</p></div>
+                        <div class="bg-white p-6 rounded-lg border border-slate-200 shadow-sm"><h3 class="font-bold text-xl mb-2 text-blue-700">DORH</h3><p class="text-slate-600">Allocates vacant housing and develops initiatives for habitability, ensuring shelter for all system participants.</p></div>
+                        <div class="bg-white p-6 rounded-lg border border-slate-200 shadow-sm"><h3 class="font-bold text-xl mb-2 text-blue-700">SERA & WMA</h3><p class="text-slate-600">Manages waste, declutters environmentally affected zones, and provides critical disaster relief.</p></div>
+                        <div class="bg-white p-6 rounded-lg border border-slate-200 shadow-sm"><h3 class="font-bold text-xl mb-2 text-blue-700">HST & RASA</h3><p class="text-slate-600">Coordinates national supply lines and manages the prospecting and allocation of raw materials.</p></div>
+                        <div class="bg-white p-6 rounded-lg border border-slate-200 shadow-sm"><h3 class="font-bold text-xl mb-2 text-blue-700">HMS & DOE</h3><p class="text-slate-600">Provides universal healthcare and develops a relevant, modern curriculum for the youth.</p></div>
+                    </div>
+                </section>
+
+                <section id="catalogue" class="mb-16">
+                    <h2 class="text-4xl font-bold text-slate-800 border-b-2 border-slate-300 pb-2 mb-8">The Universal Catalogue (UC)</h2>
+                     <p class="text-lg leading-relaxed text-slate-700 mb-8">The UC is the engine of the new economy. By performing societally beneficial tasks, citizens earn "Credits" to acquire goods and services, from daily necessities to housing. This directly links contribution to quality of life.</p>
+                    <div class="grid md:grid-cols-3 gap-8">
+                        <div class="text-center"><div class="bg-slate-200 text-slate-700 rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4 text-xl font-bold">1</div><h3 class="font-semibold text-xl mb-2">Complete Contracts</h3><p class="text-slate-600">Opt-in and complete tasks offered by local Embassies, from environmental cleanup to infrastructure maintenance.</p></div>
+                        <div class="text-center"><div class="bg-slate-200 text-slate-700 rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4 text-xl font-bold">2</div><h3 class="font-semibold text-xl mb-2">Earn Credits</h3><p class="text-slate-600">Upon task completion, credits tied to the real-world capacity of supply warehouses are awarded to a secure digital wallet.</p></div>
+                        <div class="text-center"><div class="bg-slate-200 text-slate-700 rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4 text-xl font-bold">3</div><h3 class="font-semibold text-xl mb-2">Acquire Goods</h3><p class="text-slate-600">Use Credits to "purchase" items from the curated catalogue, ensuring production meets need, not just profit.</p></div>
+                    </div>
+                </section>
+
+                <section id="safeguards" class="mb-16">
+                    <h2 class="text-4xl font-bold text-slate-800 border-b-2 border-slate-300 pb-2 mb-8">Accountability & Safeguards</h2>
+                    <div class="space-y-6 text-lg leading-relaxed text-slate-700">
+                        <div>
+                            <h3 class="text-2xl font-semibold text-slate-700 mb-2">On Authoritarianism</h3>
+                            <p>This proposal is for a constitutional democracy where the Rule of Law is paramount. To prevent abuse of power, key safeguards are built directly into the system's foundation.</p>
+                        </div>
+                         <div>
+                            <h3 class="text-2xl font-semibold text-slate-700 mb-2">The Right to Appeal</h3>
+                            <p>Any decision by a CHRA case manager denying a citizen access to housing, work, or credits can be formally appealed, ensuring due process.</p>
+                        </div>
+                         <div>
+                            <h3 class="text-2xl font-semibold text-slate-700 mb-2">Citizens' Oversight Board</h3>
+                            <p>Each region will have an independent board of legal professionals and residents to review appeals. This board has the authority to overturn unfair decisions and sanction administrators, ensuring power remains with the people.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="source-document" class="mb-16">
+                     <div class="bg-white p-8 rounded-lg border border-slate-200 shadow-sm text-center">
+                        <h2 class="text-3xl font-bold text-slate-800 mb-4">Dive Deeper</h2>
+                        <p class="text-lg max-w-2xl mx-auto mb-6 text-slate-600">This website is a summary. For a full exploration of these ideas, the complete, evolving source document is publicly available.</p>
+                        <a href="https://docs.google.com/document/d/1wFYbgVt5V_DMVNxtMUrakRaRT0F3WwuolkNBGJpYA3o/edit?usp=drivesdk" target="_blank" rel="noopener noreferrer" class="inline-block bg-blue-600 text-white font-semibold py-3 px-6 rounded-md shadow-md hover:bg-blue-700 transform hover:-translate-y-0.5 transition-all duration-200">
+                            Access the Full Document
+                        </a>
+                    </div>
+                </section>
+                
+            </div>
+        </main>
+    </div>
+
+    <!-- Floating Donation Icon -->
+    <a href="https://www.paypal.biz/ynpresidentcorp" target="_blank" rel="noopener noreferrer" 
+       class="fixed bottom-6 right-6 bg-slate-800 text-white p-4 rounded-full shadow-lg hover:bg-slate-900 hover:scale-110 transition-all duration-300 z-20"
+       aria-label="Donate">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+        </svg>
+    </a>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const notebookData = [
-                {
-                    title: 'Introduction: A New Path Forward',
-                    content: `
-                        <div class="prose-custom">
-                            <p>The author, Roosevelt, begins by expressing a feeling that modern society fails to teach what is truly important. This document is an attempt to compile a solution—a path forward for humanity—in an age where technology is rapidly changing our perceptions of work, money, and time.</p>
-                            <p>The core goal is to address societal grievances and develop tangible, applicable solutions that can benefit the majority of the population, aiming to instill a new sense of meaning and purpose without being foolish or short-sighted.</p>
-                            <p class="font-medium text-indigo-700">The central thesis is that the U.S. Government is not a single entity, but a complex set of moving parts that can be redesigned to better serve its people.</p>
-                        </div>
-                    `
-                },
-                {
-                    title: 'The Problem of Obfuscation',
-                    content: `
-                        <div class="prose-custom">
-                            <p>A key problem identified is "obfuscation"—the act of making systems intentionally obscure, unclear, or unintelligible. This is seen in many areas of American life:</p>
-                            <ul class="list-disc">
-                                <li><strong>Taxes & Finance:</strong> Complex terminology and rules create a barrier for the average person, leading to a reliance on specialized (and often expensive) professionals.</li>
-                                <li><strong>Insurance:</strong> The concepts and policies are so convoluted that one must undergo significant training just to understand them, leaving the average consumer at a disadvantage.</li>
-                                <li><strong>Legislation:</strong> Laws are often written with "loose phrasings" and complex language, opening them up to interpretations that benefit the powerful and well-connected.</li>
-                            </ul>
-                            <p>This systemic complexity acts as a "sieve," filtering out those who lack the specialized knowledge or resources to navigate it, thus reinforcing existing power structures.</p>
-                        </div>
-                    `
-                },
-                {
-                    title: 'Redefining Industry & Government',
-                    content: `
-                        <div class="prose-custom">
-                            <p>The document proposes a comprehensive restructuring of industry through new, government-run institutions designed to address fundamental societal needs. These agencies would provide baseline services and create meaningful employment.</p>
-                            <h3 class="font-semibold mt-4">Key Proposed Agencies:</h3>
-                            <ul class="list-disc">
-                                <li><strong>Health and Medical Sector (HMS):</strong> To provide universal access to healthcare.</li>
-                                <li><strong>Department of Education (DOE):</strong> To create relevant, modern curricula and incentivize learning.</li>
-                                <li><strong>Artificial Intelligence Research and Energy Authority (AIREA):</strong> To ethically guide AI development and manage sustainable energy.</li>
-                                <li><strong>Society of Environmental Relief Agents (SERA):</strong> To tackle environmental cleanup and disaster relief.</li>
-                                <li><strong>Department of Relevant Housing (DORH):</strong> To manage and allocate vacant housing to eliminate homelessness.</li>
-                            </ul>
-                            <p>The goal is to create a system where the government competes with private industry to provide essential services, fostering innovation and reducing exploitation.</p>
-                        </div>
-                    `
-                },
-                {
-                    title: 'The Universal Catalogue (UC): A New Economy',
-                    content: `
-                        <div class="prose-custom">
-                            <p>A central idea is the creation of a new economic system to exist alongside traditional currency. This is the <strong>Universal Catalogue (UC)</strong>.</p>
-                            <h3 class="font-semibold mt-4">How it works:</h3>
-                            <ul class="list-disc">
-                                <li><strong>Earning "Credits":</strong> Citizens can "opt-in" to perform societally beneficial tasks and contracts. Upon completion, they earn "Credits."</li>
-                                <li><strong>A Digital Marketplace:</strong> The UC is a secure, quantum-encrypted digital server—like an online magazine—where users can spend their Credits on a curated set of commodities, goods, and services.</li>
-                                <li><strong>Tiered Access:</strong> The catalogue could offer everything from basic necessities (soap, food) to higher-tier items like housing and transportation, unlocked through continued participation.</li>
-                                <li><strong>Not a Replacement for Money:</strong> The UC is designed to be a supplementary system. It creates a regulated, purpose-driven economy where value is tied directly to community contribution, not just profit.</li>
-                            </ul>
-                        </div>
-                    `
-                },
-                {
-                    title: 'A New Social Ethic: Collective Servitism',
-                    content: `
-                        <div class="prose-custom">
-                            <p>To support this new society, a cultural shift is needed towards <strong>"Collective Servitism."</strong> This philosophy redefines value and work ethic based on service and contribution beyond self-interest.</p>
-                            <h3 class="font-semibold mt-4">Key Concepts:</h3>
-                            <ul class="list-disc">
-                                <li><strong>New Work Ethic:</strong> Defined as "The ability of the individual to perform work and or tasks in service of a goal beyond self-enrichment."</li>
-                                <li><strong>Selflessness as a Goal:</strong> The system aims to incentivize selflessness and punish exploitation, fostering a culture that rewards positive community impact.</li>
-                                <li><strong>Supporting the "Unalied Weak":</strong> The author acknowledges that not everyone can thrive in a hyper-competitive environment. This new system is designed to provide a place for everyone, allocating tasks and support based on an individual's capabilities and desire to contribute, rather than leaving them behind.</li>
-                            </ul>
-                        </div>
-                    `
-                },
-                {
-                    title: 'Critique of Current Institutions',
-                    content: `
-                        <div class="prose-custom">
-                             <p>The document provides sharp critiques of major American institutions, arguing they are failing the general population.</p>
-                            <h3 class="font-semibold mt-4">Main Criticisms:</h3>
-                            <ul class="list-disc">
-                                <li><strong>Education:</strong> The public education system leaves youth feeling "Lost or Apathetic." It fails to teach relevant, practical skills (like finance or economics) and instead funnels students into a diluted job market without a sense of direction or purpose.</li>
-                                <li><strong>Armed Forces:</strong> While structurally proficient, the motivation for joining is often purely monetary rather than a genuine desire to protect the country's ideals. This is seen as a symptom of a government more interested in foreign affairs than domestic prosperity.</li>
-                                <li><strong>The Economy:</strong> Described as "nonsensical" and manipulated by a wealthy elite. It is seen as a system that benefits those who created it while leaving younger generations with insurmountable barriers to success.</li>
-                            </ul>
-                        </div>
-                    `
-                },
-                {
-                    title: 'The Path Forward: Practical Experiments',
-                    content: `
-                        <div class="prose-custom">
-                            <p>To make these ideas a reality, a series of phased "experiments" are proposed to roll out the new system gradually and test its viability.</p>
-                            <h3 class="font-semibold mt-4">Proposed Steps:</h3>
-                            <ul class="list-disc">
-                                <li><strong>Experiment Alpha:</strong> Create the physical infrastructure—a network of interconnected warehouses to store and manage the goods for the Universal Catalogue.</li>
-                                <li><strong>Experiment Beta:</strong> Introduce the "Credits" system into schools to incentivize learning and participation from a young age.</li>
-                                <li><strong>Experiment Omega:</strong> Establish local "Embassies" in communities. These centers would issue daily contracts for citizens to complete, allowing them to earn Credits and improve their local environment (e.g., trash removal, landscaping).</li>
-                                <li><strong>Experiment Gamma:</strong> Create "Embassilic Cells"—self-sustaining communities built around reclaimed housing, an Embassy, and a warehouse, where residents work on local contracts to support their community.</li>
-                            </ul>
-                        </div>
-                    `
-                },
-                {
-                    title: 'Conclusion: Balancing Freedom & Order',
-                    content: `
-                        <div class="prose-custom">
-                             <p>The author addresses the potential fear that such a large-scale system could lead to authoritarianism or a "Big Brother" state. The document clarifies that this is not the intention.</p>
-                            <h3 class="font-semibold mt-4">Core Principles:</h3>
-                            <ul class="list-disc">
-                                <li><strong>Constitutional Democracy:</strong> The proposed society is built on the rule of law, due process, and the protection of individual civil liberties.</li>
-                                <li><strong>Competition, Not Replacement:</strong> The goal is not to abolish capitalism or private enterprise. Instead, the government would compete with the private sector, creating baseline competition to drive innovation and reduce exploitation.</li>
-                                <li><strong>Preserving Liberty:</strong> The ultimate aim is to streamline and allocate human effort in a way that diminishes exploitation while strengthening individual liberty, free will, autonomy, and purpose.</li>
-                            </ul>
-                        </div>
-                    `
-                }
-            ];
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Mobile Menu Toggle ---
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const sidebar = document.getElementById('sidebar');
 
-            const container = document.getElementById('notebook-container');
-            const progressIndicator = document.getElementById('progress-indicator');
-            const prevBtn = document.getElementById('prev-btn');
-            const nextBtn = document.getElementById('next-btn');
+            mobileMenuButton.addEventListener('click', () => {
+                sidebar.classList.toggle('hidden');
+            });
             
-            let currentCellIndex = 0;
-
-            function renderNotebook() {
-                container.innerHTML = '';
-                notebookData.forEach((cell, index) => {
-                    const cellEl = document.createElement('div');
-                    cellEl.className = 'notebook-cell';
-                    cellEl.id = `cell-${index}`;
-                    cellEl.innerHTML = `
-                        <h2 class="text-xl md:text-2xl font-bold mb-4 text-gray-800">${cell.title}</h2>
-                        ${cell.content}
-                    `;
-                    container.appendChild(cellEl);
+            // --- Close mobile menu when a link is clicked ---
+            const navLinks = document.querySelectorAll('#navigation a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (window.innerWidth < 768) { // Only close on mobile
+                        sidebar.classList.add('hidden');
+                    }
                 });
-                updateView();
-            }
-
-            function updateView() {
-                document.querySelectorAll('.notebook-cell').forEach((cell, index) => {
-                    cell.classList.toggle('active', index === currentCellIndex);
-                });
-                
-                progressIndicator.textContent = `Step ${currentCellIndex + 1} of ${notebookData.length}`;
-                
-                prevBtn.disabled = currentCellIndex === 0;
-                nextBtn.disabled = currentCellIndex === notebookData.length - 1;
-
-                // Scroll to top of container on cell change
-                container.parentElement.scrollTop = 0;
-            }
-
-            prevBtn.addEventListener('click', () => {
-                if (currentCellIndex > 0) {
-                    currentCellIndex--;
-                    updateView();
-                }
             });
 
-            nextBtn.addEventListener('click', () => {
-                if (currentCellIndex < notebookData.length - 1) {
-                    currentCellIndex++;
-                    updateView();
-                }
+            // --- Active navigation link highlighting on scroll ---
+            const sections = document.querySelectorAll('main section');
+            const observer = new IntersectionObserver((entries) => {
+                let currentSectionId = '';
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                       currentSectionId = entry.target.id;
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('nav-active');
+                    if (link.getAttribute('href') === `#${currentSectionId}`) {
+                        link.classList.add('nav-active');
+                    }
+                });
+
+            }, {
+                rootMargin: '-40% 0px -60% 0px',
+                threshold: 0
             });
 
-            renderNotebook();
+            sections.forEach(section => {
+                observer.observe(section);
+            });
         });
     </script>
-
 </body>
 </html>
 
